@@ -40,16 +40,40 @@ const About = () => {
             </p>
 
             <div className="mt-6 flex justify-center gap-4">
-              <a
-                href="https://www.linkedin.com/in/rajshekarmudigonda/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:border-[#2F5D62] hover:text-[#2F5D62] transition"
-              >
-                in
-              </a>
-              {/* Optional: Add GitHub here if you want later */}
-            </div>
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/in/rajshekarmudigonda/"
+    target="_blank"
+    rel="noreferrer"
+    className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:border-[#2F5D62] hover:text-[#2F5D62] transition"
+  >
+    <span className="font-bold pb-1">in</span>
+  </a>
+
+  {/* GitHub - Add your username below */}
+  <a
+    href="https://github.com/rajshekarm" 
+    target="_blank"
+    rel="noreferrer"
+    className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:border-[#2F5D62] hover:text-[#2F5D62] transition"
+  >
+    {/* Simple GitHub SVG Icon */}
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="16" 
+      height="16" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+      <path d="M9 18c-4.51 2-5-2-7-2"/>
+    </svg>
+  </a>
+</div>
           </div>
         </div>
 
@@ -84,7 +108,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator (Optional but recommended) */}
+        {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-gray-400">
              <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
              <ArrowDown className="w-4 h-4 mx-auto mt-1" />
