@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const About = () => {
   return (
     <main className="h-[calc(100vh-64px)] flex font-sans bg-white">
@@ -58,20 +60,20 @@ const About = () => {
           </p>
 
           <div className="flex gap-4">
-            <a
-              href="/resume"
-              className="px-6 py-3 rounded-full bg-[#3576c0] text-white font-medium hover:bg-[#042030]  transition"
-            >
-              Resume
-            </a>
+  <Link
+    to="/resume"
+    className="px-6 py-3 rounded-full bg-[#3576c0] text-white font-medium hover:bg-[#042030] transition"
+  >
+    Resume
+  </Link>
 
-            <a
-              href="/projects"
-              className="px-6 py-3 rounded-full border border-gray-800 font-medium hover:bg-gray-100 transition"
-            >
-              Projects
-            </a>
-          </div>
+  <Link
+    to="/projects"
+    className="px-6 py-3 rounded-full border border-gray-800 font-medium hover:bg-gray-100 transition"
+  >
+    Projects
+  </Link>
+</div>
         </div>
       </div>
     </main>
