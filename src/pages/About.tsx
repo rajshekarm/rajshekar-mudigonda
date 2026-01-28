@@ -81,15 +81,19 @@ const About = () => {
 
         {/* Right Section */}
         <div className="w-1/2 flex items-center px-24 pl-32"> {/* Increased left padding slightly to clear the card */}
-          <div className="max-w-lg">
+          <div className="max-w-2xl">
             <h1 className="text-5xl font-bold mb-6 tracking-tight text-gray-900">
               Hi, I'm Rajashekar.
             </h1>
 
-             <p className="text-base text-gray-700 leading-relaxed mb-10">
-              I am a Software Engineer with experience in designing and developing appkications for trading systems. I have recently finished my Master’s degree in Computer Science from Illinois Instiute of Technology Tech, Chicago, 
-              and Currently, working as backend developer intern at fashion ecommerce. Working on Generative application developing features and learning the Gen AI trend.
-            </p>
+             <p className="text-base text-gray-700 leading-relaxed mb-4">
+                I worked as a Software Engineer on the EMS team at Eze Software, where I built and optimized high-performance trading systems capable of processing massive order volumes with ultra-low latency. My core strengths include distributed systems, streaming pipelines, and API design.
+              </p>
+
+              <p className="text-base text-gray-700 leading-relaxed mb-10">
+                I recently completed my Master’s degree in Computer Science from Illinois Institute of Technology, Chicago. Currently, I’m a Backend Developer Intern in the fashion e-commerce industry, building scalable backend services and developing features for Generative AI–driven applications.
+              </p>
+
 
             <div className="flex gap-4">
               <Link
