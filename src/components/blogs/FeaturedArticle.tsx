@@ -9,7 +9,7 @@ type Props = {
 
 export default function FeaturedArticle({ article }: Props) {
   return (
-    <section className="py-16">
+    <section className="pb-12 pt-2">
 
       <div className="mb-4 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-400">
         Featured

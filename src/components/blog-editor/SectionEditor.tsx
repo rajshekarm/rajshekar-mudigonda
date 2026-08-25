@@ -1,5 +1,4 @@
 import type {
-  BlogBlock,
   BlogBlockType,
   BlogSection,
 } from "../../types/blogEditor";

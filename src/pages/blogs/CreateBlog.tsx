@@ -21,6 +21,7 @@ import {
   createId,
   createSection,
 } from "../../utils/blogEditor";
+import { createBlog } from "../../api/blogEditor";
 
 const initialDraft: BlogDraft = {
   id: createId(),
@@ -64,6 +65,8 @@ export default function CreateBlogPage() {
     useState<"write" | "preview">(
       "write",
     );
+  const [publishing, setPublishing] = useState(false);
+  const [publishError, setPublishError] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem(
@@ -185,40 +188,29 @@ export default function CreateBlogPage() {
     );
   }
 
-  function publish() {
+  async function publish() {
     if (!draft.title.trim()) {
-      window.alert(
-        "Please add a title before publishing.",
-      );
+      setPublishError("Please add a title before publishing.");
 
       return;
     }
 
-    /*
-      Replace this with your API call later.
+    setPublishing(true);
+    setPublishError(null);
 
-      Example:
-
-      await fetch("/api/blogs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(draft),
-      });
-    */
-
-    console.log(
-      "Publishing blog:",
-      draft,
-    );
-
-    window.alert(
-      "Blog is ready to be sent to your backend.",
-    );
-
-    // Example after API success:
-    // navigate(`/blogs/${createdBlog.slug}`);
+    try {
+      const createdBlog = await createBlog(draft);
+      localStorage.removeItem("blog-draft");
+      navigate(`/blogs/${createdBlog.slug}`);
+    } catch (error) {
+      setPublishError(
+        error instanceof Error
+          ? error.message
+          : "The blog could not be published.",
+      );
+    } finally {
+      setPublishing(false);
+    }
   }
 
   return (
@@ -292,15 +284,22 @@ export default function CreateBlogPage() {
 
             <button
               type="button"
-              onClick={publish}
-              className="rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+              onClick={() => void publish()}
+              disabled={publishing}
+              className="rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Publish
+              {publishing ? "Publishing..." : "Publish"}
             </button>
           </div>
 
         </div>
       </header>
+
+      {publishError && (
+        <div className="border-b border-red-200 bg-red-50 px-6 py-3 text-center text-sm text-red-700">
+          {publishError}
+        </div>
+      )}
 
       {/* MOBILE MODE */}
 

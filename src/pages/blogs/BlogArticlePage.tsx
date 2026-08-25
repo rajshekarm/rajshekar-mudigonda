@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import BlogRenderer from "../../components/blog-renderer/BlogRenderer";
 
 import type { BlogDraft } from "../../types/blogEditor";
+import { fetchPublishedBlog } from "../../api/blogEditor";
 
 const mockArticles: Record<string, BlogDraft> = {
   "llm-critical-tool-calling": {
@@ -144,8 +146,46 @@ const mockArticles: Record<string, BlogDraft> = {
 export default function BlogArticlePage() {
   const { slug } = useParams();
 
-  const article =
-    slug ? mockArticles[slug] : undefined;
+  const [article, setArticle] = useState<BlogDraft | undefined>(() =>
+    slug ? mockArticles[slug] : undefined,
+  );
+  const [loading, setLoading] = useState(Boolean(slug && !mockArticles[slug]));
+
+  useEffect(() => {
+    let active = true;
+
+    if (!slug) {
+      setArticle(undefined);
+      setLoading(false);
+      return;
+    }
+
+    setArticle(mockArticles[slug]);
+    setLoading(!mockArticles[slug]);
+
+    fetchPublishedBlog(slug)
+      .then((storedArticle) => {
+        if (active) setArticle(storedArticle);
+      })
+      .catch(() => {
+        if (active) setArticle(mockArticles[slug]);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="grid min-h-screen place-items-center bg-white px-6 text-slate-500">
+        Loading article...
+      </main>
+    );
+  }
 
   if (!article) {
     return <BlogNotFound />;

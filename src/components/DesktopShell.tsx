@@ -71,6 +71,7 @@ const DesktopShell = ({ children }: { children: ReactNode }) => {
 
   const isDark = theme === "dark"
   const hideChrome = pathname === "/education"
+  const isBlogsHome = pathname === "/blogs"
 
   const shellClass = useMemo(
     () =>
@@ -230,7 +231,17 @@ const DesktopShell = ({ children }: { children: ReactNode }) => {
           </>
         )}
 
-        <div className={hideChrome ? "pt-0 pb-0" : "pt-28 pb-24"}>{children}</div>
+        <div
+          className={
+            hideChrome
+              ? "pt-0 pb-0"
+              : isBlogsHome
+                ? "pt-[82px] pb-24"
+                : "pt-28 pb-24"
+          }
+        >
+          {children}
+        </div>
 
         {!hideChrome && (
           <>

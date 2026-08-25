@@ -5,9 +5,6 @@ import Resume from "./pages/Resume"
 import Education from "./pages/Education"
 import Projects from "./pages/Projects"
 import Contact from "./pages/Contact"
-import Blogs from "./pages/Blogs"
-import BlogPost from "./pages/BlogPost"
-import NewBlog from "./pages/NewBlog"
 import Games from "./pages/games/Games"
 import Artion from "./pages/Artion"
 import NameToBinary from "./pages/games/NameToBinary"
@@ -52,7 +49,7 @@ const App = () => {
           <Route path="/education" element={<Education />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/blogs/new" element={<CreateBlogPage />} />
           <Route path="/blogs/:slug" element={<BlogArticlePage />} />
           <Route path="/artion" element={<Artion />} />
@@ -62,10 +59,7 @@ const App = () => {
           <Route path="/games" element={<Games />} />
           <Route path="/artionNextGen" element={<Navigate to="/projects/ecg-triage-intelligence" replace />} />
           <Route path="/games/name-to-binary" element={<NameToBinary />} />
-          <Route
-          path="/blogspage"
-          element={<BlogsPage />}
-        />
+          <Route path="/blogspage" element={<Navigate to="/blogs" replace />} />
         </Routes>
       </DesktopShell>
     </BrowserRouter>

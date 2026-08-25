@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import BlogHero from "../../components/blogs/BlogHero";
 import BlogToolbar from "../../components/blogs/BlogToolbar";
@@ -7,28 +7,63 @@ import ArticleGrid from "../../components/blogs/ArticleGrid";
 import WriteArticleCTA from "../../components/blogs/WriteArticleCTA";
 
 import { blogArticles } from "../../data/blogArticle";
+import {
+  fetchPublishedBlogs,
+  toBlogArticle,
+} from "../../api/blogEditor";
+import type { BlogArticle } from "../../types/blog";
 
 export default function BlogsPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [articles, setArticles] = useState<BlogArticle[]>(blogArticles);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    fetchPublishedBlogs()
+      .then((storedBlogs) => {
+        if (!active) return;
+
+        const storedArticles = storedBlogs.map(toBlogArticle);
+        const storedSlugs = new Set(storedArticles.map((article) => article.slug));
+        setArticles([
+          ...storedArticles,
+          ...blogArticles.filter((article) => !storedSlugs.has(article.slug)),
+        ]);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        setLoadError(
+          error instanceof Error
+            ? error.message
+            : "Stored blogs could not be loaded.",
+        );
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const categories = useMemo(() => {
     return [
       "All",
       ...Array.from(
         new Set(
-          blogArticles.map(
+          articles.map(
             (article) => article.category,
           ),
         ),
       ),
     ];
-  }, []);
+  }, [articles]);
 
   const filteredArticles = useMemo(() => {
     const query = search.toLowerCase().trim();
 
-    return blogArticles.filter((article) => {
+    return articles.filter((article) => {
       const categoryMatches =
         category === "All" ||
         article.category === category;
@@ -51,23 +86,23 @@ export default function BlogsPage() {
 
       return categoryMatches && searchMatches;
     });
-  }, [search, category]);
+  }, [articles, search, category]);
 
   const featuredArticle =
-    blogArticles.find(
+    articles.find(
       (article) => article.featured,
-    );
-
-  const regularArticles =
-    filteredArticles.filter(
-      (article) =>
-        article.id !== featuredArticle?.id,
     );
 
   const showFeatured =
     featuredArticle &&
     search.length === 0 &&
     category === "All";
+
+  const regularArticles = showFeatured
+    ? filteredArticles.filter(
+        (article) => article.id !== featuredArticle.id,
+      )
+    : filteredArticles;
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -83,6 +118,12 @@ export default function BlogsPage() {
           onSearchChange={setSearch}
           onCategoryChange={setCategory}
         />
+
+        {loadError && (
+          <p className="mt-4 text-sm text-amber-700">
+            The local API is unavailable. Showing sample articles only.
+          </p>
+        )}
 
         {showFeatured && (
           <FeaturedArticle

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "f473aeef-d8d5-4451-8eb5-0a275bd24a03",
+    "title": "If the Service Layer Does All the Real Work, What Is the LLM Actually For?",
+    "subtitle": "",
+    "excerpt": "",
+    "coverImage": "",
+    "author": "",
+    "tags": [],
+    "sections": [
+      {
+        "id": "3446b007-941b-4383-906f-950742299201",
+        "heading": "",
+        "subheading": "",
+        "blocks": [
+          {
+            "id": "1dd53cf1-827c-4c32-96c8-2337c54fc1af",
+            "type": "paragraph",
+            "data": {
+              "text": "A lot of AI architecture diagrams look almost disappointing once you make them production-safe.\n\nThe LLM does not own the database. It does not decide permissions. It should not enforce business rules. It should not directly execute payments, update records, or determine whether a user is authorized.\n\nSo an obvious question appears:\n\nIf the service layer is doing all the important work, why do we need the LLM at all?\n\nThat question is actually the key to understanding production AI architecture."
+            }
+          },
+          {
+            "id": "dc8629a4-a033-4d56-b748-6fe8a9af2789",
+            "type": "code",
+            "data": {
+              "language": "python",
+              "code": "def calculate_tuition(credits, residency):\n    ..."
+            }
+          },
+          {
+            "id": "64df0015-7805-4d93-8054-eadec53e26db",
+            "type": "code",
+            "data": {
+              "language": "python",
+              "code": "def check_prerequisite(student, course):\n    ..."
+            }
+          }
+        ]
+      }
+    ],
+    "slug": "if-the-service-layer-does-all-the-real-work-what-is-the-llm-actually-for-2",
+    "category": "General",
+    "publishedAt": "2026-08-25T16:00:04.565479+00:00",
+    "readingTime": 1,
+    "featured": false,
+    "createdAt": "2026-08-25T16:00:04.565479+00:00",
+    "updatedAt": "2026-08-25T16:00:04.565479+00:00"
+  },
+  {
+    "id": "fedf5cdf-46dc-4d59-a85e-c5c46a6a93a6",
+    "title": "If the Service Layer Does All the Real Work, What Is the LLM Actually For?",
+    "subtitle": "",
+    "excerpt": "",
+    "coverImage": "",
+    "author": "",
+    "tags": [],
+    "sections": [
+      {
+        "id": "19f57866-4342-4be9-b425-d14e5afe8bb7",
+        "heading": "",
+        "subheading": "",
+        "blocks": [
+          {
+            "id": "2c0a314b-a27d-4577-a2fc-d0a42a1cf80a",
+            "type": "paragraph",
+            "data": {
+              "text": "A lot of AI architecture diagrams look almost disappointing once you make them production-safe.\n\nThe LLM does not own the database. It does not decide permissions. It should not enforce business rules. It should not directly execute payments, update records, or determine whether a user is authorized.\n\nSo an obvious question appears:\n\nIf the service layer is doing all the important work, why do we need the LLM at all?\n\nThat question is actually the key to understanding production AI architecture."
+            }
+          },
+          {
+            "id": "446d3623-b5cf-46f7-adc2-dced46916c9c",
+            "type": "image",
+            "data": {
+              "src": "",
+              "alt": "",
+              "caption": "",
+              "size": "large"
+            }
+          },
+          {
+            "id": "20a741e0-210c-48e2-9bcf-d286860df7b1",
+            "type": "code",
+            "data": {
+              "language": "python",
+              "code": ""
+            }
+          }
+        ]
+      }
+    ],
+    "slug": "if-the-service-layer-does-all-the-real-work-what-is-the-llm-actually-for",
+    "category": "General",
+    "publishedAt": "2026-08-25T15:56:03.447591+00:00",
+    "readingTime": 1,
+    "featured": false,
+    "createdAt": "2026-08-25T15:56:03.447591+00:00",
+    "updatedAt": "2026-08-25T15:56:03.447591+00:00"
+  }
+]

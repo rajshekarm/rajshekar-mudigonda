@@ -188,22 +188,22 @@ function CodeBlock({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
-      <div className="flex items-center justify-between border-b border-slate-800 px-5 py-3">
-        <span className="text-xs font-medium text-slate-400">
+    <div className="overflow-hidden rounded-2xl border border-[#b8d8ce] bg-[#f0f8f5]">
+      <div className="flex items-center justify-between border-b border-[#c7e0d8] bg-[#e4f2ed] px-5 py-3">
+        <span className="text-xs font-semibold text-[#32665a]">
           {language || "code"}
         </span>
 
         <button
           type="button"
           onClick={copyCode}
-          className="text-xs font-medium text-slate-400 transition hover:text-white"
+          className="text-xs font-semibold text-[#32665a] transition hover:text-[#173f36]"
         >
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
 
-      <pre className="overflow-x-auto p-5 text-sm leading-7 text-slate-100">
+      <pre className="overflow-x-auto p-5 text-sm leading-7 text-slate-800">
         <code>{code}</code>
       </pre>
     </div>

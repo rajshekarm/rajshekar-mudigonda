@@ -157,6 +157,35 @@ type Blog = {
 
 ## Current Blog UI Behavior
 
+## Local Blog API
+
+The block-based blog editor uses a SQLAlchemy-backed Python API. Install its
+dependency and start it from the project directory:
+
+```powershell
+python -m pip install -r .\api\requirements.txt
+python .\api\blog_server.py
+```
+
+The API listens at `http://127.0.0.1:8080/api/blogs` and uses the SQLite
+database at `api/storage/blogs.db`. Existing records from `blogs.json` are
+imported automatically when the SQL database is empty. Set `VITE_BLOG_API_URL`
+to use a different frontend endpoint.
+
+Set `BLOG_DATABASE_URL` to use another SQLAlchemy-supported database. For
+example, after installing a PostgreSQL driver:
+
+```powershell
+$env:BLOG_DATABASE_URL = "postgresql+psycopg://user:password@host/blogs"
+python .\api\blog_server.py --host 0.0.0.0
+```
+
+- `POST /api/blogs` creates a blog.
+- `GET /api/blogs` lists stored blogs.
+- `GET /api/blogs/{slug}` returns one stored blog.
+- `PUT /api/blogs/{slug}` updates mutable blog fields.
+- `DELETE /api/blogs/{slug}` deletes a blog.
+
 ### `/blogs/new`
 
 1. Minimal by default: `title` and `description`.
