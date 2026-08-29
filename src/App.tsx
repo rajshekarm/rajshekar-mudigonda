@@ -15,7 +15,7 @@ import BlogsPage from "./pages/blogs/BlogsPage"
 import CreateBlogPage from "./pages/blogs/CreateBlog"
 import BlogArticlePage from "./pages/blogs/BlogArticlePage"
 
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 const App = () => {
   
